@@ -13,12 +13,6 @@
     position: fixed;
     top: 0px;
     left: 0px;
-    .close {
-        z-index: 1000;
-        position: fixed;
-        top: 0px;
-        right: 0px;
-    }
     .video-container {
         width: 100vw;
         height: 100vh;
@@ -35,7 +29,6 @@
             position: fixed;
             bottom: 0px;
             z-index: 1000;
-            border: 1px solid red;
             opacity: 0.8;
             .play-pause {
                 width: 5%;
@@ -43,9 +36,31 @@
             }
             .progress {
                 width: 80%;
+                background-color: transparent;
+                progress {
+                    border-radius: 0px;
+                    width: 100%;
+                    color: #f0f0f0;
+                    font-size: .6em;
+                    line-height: 1.5em;
+                    text-indent: .5em;
+                    height: 1.8em;
+                    border: 1px solid #f0f0f0;
+                    background: transparent;
+                    &::-webkit-progress-value {
+                        background: #f0f0f0;
+                    }
+                    &::-webkit-progress-bar {
+                        background: none;
+                    }
+                }
             }
             .time {
-                width: 15%;
+                width: 10%;
+                min-width: 30px;
+            }
+            .close {
+                width: 5%;
                 min-width: 30px;
             }
         }

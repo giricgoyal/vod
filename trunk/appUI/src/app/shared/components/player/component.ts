@@ -11,12 +11,40 @@ export class PlayerComponent implements AfterViewInit {
     @Input('inputModel') item: any;
     @ViewChild('video') videoEl: ElementRef;
 
-    constructor() {
+    private videoPercent: Number;
+    private currentTime: string;
+    private duration: string;
 
+    constructor() {
+        this.videoPercent = 0;
     }
 
     ngAfterViewInit() {
-        console.log(this.videoEl);
+        
+    }
+
+    private getTimeString(time) {
+        // Hours, minutes and seconds
+        var hrs = ~~(time / 3600);
+        var mins = ~~((time % 3600) / 60);
+        var secs = Math.ceil(time % 60);
+
+        // Output like "1:01" or "4:03:59" or "123:03:59"
+        var ret = "";
+
+        if (hrs > 0) {
+            ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+        }
+
+        ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+        ret += "" + secs;
+        return ret;
+    }
+
+    durationChangeEventHandler($event) {
+        this.videoPercent = (100 / this.videoEl.nativeElement.duration) * this.videoEl.nativeElement.currentTime;
+        this.duration = this.getTimeString(this.videoEl.nativeElement.duration);
+        this.currentTime = this.getTimeString(this.videoEl.nativeElement.currentTime);
     }
 
     close() {

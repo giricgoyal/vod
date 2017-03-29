@@ -10,7 +10,7 @@
         </video>
         <div class="controls p-1 d-flex flex-row justify-content-center align-items-center">
             <div class="play-pause">
-                <i class="fa fa-play fa-2x"></i>
+                <a (click)="playPause(video)"><i class="fa fa-2x" [ngClass]="{'fa-play': video.paused, 'fa-pause': !video.paused}"></i></a>
             </div>
             <div class="progress">
                 <progress id='p' max='100' value='0'><span>50</span>% played</progress>

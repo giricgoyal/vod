@@ -9,6 +9,11 @@ const routes: Routes = [
         component: MainComponent,
         children : [
             {
+                path: 'home',
+                loadChildren: '../home/index#HomeModule',
+                canActivate: [AuthGuard]
+            },
+            {
                 path: 'history',
                 loadChildren: '../history/index#HistoryModule',
                 canActivate: [AuthGuard]

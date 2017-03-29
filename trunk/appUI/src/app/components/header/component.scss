@@ -1,2 +1,13 @@
 header {
+    nav {
+        background-color: #aaaaaa;
+        .navbar-collapse {
+            width: auto;
+            .nav-item {
+                &.active {
+                    color: #f0f0f0 !important;
+                }
+            }
+        }
+    }
 }

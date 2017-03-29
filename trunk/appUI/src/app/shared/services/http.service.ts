@@ -44,9 +44,9 @@ export class HttpService {
     setHttpDefaultsHeadersCommonAuthorization(header) {
         this.headers.set('Authorization', header);
     }
-    
-    request(url, method, dataType, data, params, successFn, errorFn) {
-        this.http.request(APP_CONFIG.api + url, {
+
+    private makeRequest(url, method, dataType, data, params, successFn, errorFn) {
+        this.http.request(url, {
             method: method,
             body: data,
             headers: this.headers
@@ -62,5 +62,13 @@ export class HttpService {
                 }
             }
         );
+    }
+    
+    requestExternal(url, method, dataType, data, params, successFn, errorFn) {
+        this.makeRequest(url, method, dataType, data, params, successFn, errorFn);
+    }
+
+    request(url, method, dataType, data, params, successFn, errorFn) {
+        this.makeRequest(APP_CONFIG.api + url, method, dataType, data, params, successFn, errorFn);
     }
 }

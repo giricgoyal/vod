@@ -22,7 +22,7 @@ export class AuthenticationService {
                 window.location.href = params['redirecturl'];    
             }
             else {
-                this.router.navigate(['/app']);
+                this.router.navigate(['/app/home']);
             }
         });
     }

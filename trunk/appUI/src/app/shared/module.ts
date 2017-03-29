@@ -5,8 +5,8 @@ import { HttpModule } from '@angular/http';
 import { ToasterModule } from 'angular2-toaster';
 import { RouterModule } from '@angular/router';
 
-import { HttpService, ToasterInjectableService, SessionService, AuthenticationService, AuthGuard } from './services';
-import { AppLoaderComponent, NameInitialsComponent } from './components';
+import { HttpService, ToasterInjectableService, SessionService, AuthenticationService, AuthGuard, MoviesService } from './services';
+import { AppLoaderComponent, NameInitialsComponent, CarouselComponent } from './components';
 
 @NgModule({
   imports: [
@@ -18,7 +18,8 @@ import { AppLoaderComponent, NameInitialsComponent } from './components';
   ],
   declarations: [
     AppLoaderComponent,
-    NameInitialsComponent
+    NameInitialsComponent,
+    CarouselComponent
   ],
   exports: [
     CommonModule,
@@ -27,7 +28,8 @@ import { AppLoaderComponent, NameInitialsComponent } from './components';
     ToasterModule,
     RouterModule,
     AppLoaderComponent,
-    NameInitialsComponent
+    NameInitialsComponent,
+    CarouselComponent
   ]
 })
 
@@ -35,7 +37,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ HttpService, ToasterInjectableService, SessionService, AuthenticationService, AuthGuard ]
+      providers: [ HttpService, ToasterInjectableService, SessionService, AuthenticationService, AuthGuard, MoviesService ]
     }
   }
 }

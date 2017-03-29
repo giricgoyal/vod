@@ -1,9 +1,17 @@
 <header>
-    <nav class="navbar navbar-light  bg-primary d-flex align-items-center justify-content-center flex-wrap">
-        <div class="container align-items-center">
-            <a class="text-white navbar-brand">{{title}}</a>
-            <a class="pull-right pt-1 text-white" (click)="logout()">Logout</a>
+    <nav class="navbar navbar-toggleable-md navbar-light align-items-center justify-content-between flex-row">
+        <div>
+            <a class="text-white navbar-brand" [routerLink]="['/app/home']">{{title}}</a>
         </div>
-        <div></div>
+        <div class="navbar-collapse">
+            <div class="navbar-nav flex-row">
+                <a class="text-white nav-item nav-item nav-link" routerLinkActive="active" [routerLink]="['/app/home']">Home <span class="sr-only">(current)</span></a>
+            </div>
+        </div>
+        <div class="navbar-collapse ml-auto">
+            <div class="navbar-nav flex-row">
+                <a class="text-white nav-item nav-link" routerLinkActive="active" [routerLink]="['/app/history']">History <span class="sr-only">(current)</span></a>
+            </div>
+        </div>
     </nav>
 </header>

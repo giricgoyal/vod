@@ -1,0 +1,12 @@
+<div class="carousel-container pt-2 pb-2 pl-2 pr-2">
+    <div class="card-container d-flex flex-row">
+        <template ngFor let-item [ngForOf]="carouselData" let-i="index" [ngForTrackBy]="i">
+            <div class="movie-card m-1">
+                <div>
+                    <img class="movie-thumb" src="{{item.images[0].url || 'assets/images/unavailable.png'}}"/>
+                </div>
+                <div>{{item.title}}</div>
+            </div>
+        </template>
+    </div>
+</div>

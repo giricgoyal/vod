@@ -13,4 +13,4 @@ import { HistoryRouteModule } from './routes';
   ]
 })
 
-export class AboutModule {}
+export class HistoryModule {}

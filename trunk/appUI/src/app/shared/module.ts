@@ -6,7 +6,7 @@ import { ToasterModule } from 'angular2-toaster';
 import { RouterModule } from '@angular/router';
 
 import { HttpService, ToasterInjectableService, SessionService, AuthenticationService, AuthGuard, MoviesService } from './services';
-import { AppLoaderComponent, NameInitialsComponent, CarouselComponent } from './components';
+import { AppLoaderComponent, CarouselComponent, PlayerComponent } from './components';
 
 @NgModule({
   imports: [
@@ -18,8 +18,8 @@ import { AppLoaderComponent, NameInitialsComponent, CarouselComponent } from './
   ],
   declarations: [
     AppLoaderComponent,
-    NameInitialsComponent,
-    CarouselComponent
+    CarouselComponent,
+    PlayerComponent
   ],
   exports: [
     CommonModule,
@@ -28,8 +28,8 @@ import { AppLoaderComponent, NameInitialsComponent, CarouselComponent } from './
     ToasterModule,
     RouterModule,
     AppLoaderComponent,
-    NameInitialsComponent,
-    CarouselComponent
+    CarouselComponent,
+    PlayerComponent
   ]
 })
 

@@ -1,0 +1,53 @@
+.player-backdrop {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background-color: #000000;
+}
+
+.player-container {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    .close {
+        z-index: 1000;
+        position: fixed;
+        top: 0px;
+        right: 0px;
+    }
+    .video-container {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        video {
+            width: 100%;
+        }
+        .controls {
+            height: 50px;
+            background-color: #909090;
+            width: 100%;
+            position: fixed;
+            bottom: 0px;
+            z-index: 1000;
+            border: 1px solid red;
+            opacity: 0.8;
+            .play-pause {
+                width: 5%;
+                min-width: 24px;
+            }
+            .progress {
+                width: 80%;
+            }
+            .time {
+                width: 15%;
+                min-width: 30px;
+            }
+        }
+    }
+}

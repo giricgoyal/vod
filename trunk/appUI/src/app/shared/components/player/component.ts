@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
 
 @Component({
     selector: 'player',
@@ -14,9 +14,24 @@ export class PlayerComponent implements AfterViewInit {
     private videoPercent: Number;
     private currentTime: string;
     private duration: string;
+    private timeoutId: any;
+    private showControls: boolean;
+
+    @HostListener('mousemove', ['$event'])
+    onMousemove(event: MouseEvent) {
+        this.showControls = true;
+        this.timeoutId;
+        if (this.timeoutId) {
+            clearTimeout(this.timeoutId);
+        }
+        this.timeoutId = setTimeout(() => {
+            this.showControls = false;
+        }, 1000);
+    }
 
     constructor() {
         this.videoPercent = 0;
+        this.showControls = false;
     }
 
     ngAfterViewInit() {
@@ -45,13 +60,16 @@ export class PlayerComponent implements AfterViewInit {
         this.videoPercent = (100 / this.videoEl.nativeElement.duration) * this.videoEl.nativeElement.currentTime;
         this.duration = this.getTimeString(this.videoEl.nativeElement.duration);
         this.currentTime = this.getTimeString(this.videoEl.nativeElement.currentTime);
+        if (this.videoEl.nativeElement.currentTime >= this.videoEl.nativeElement.duration) {
+            this.close();
+        }
     }
 
     close() {
         this.closeCallback.emit(null);
     }
 
-    playPause(video) {
+    playPause() {
         if (this.videoEl.nativeElement.paused) {
             this.videoEl.nativeElement.play();
         }

@@ -5,15 +5,31 @@
             <source src="{{item.contents[0].url}}" type="video/{{item.contents[0].format}}" >
             Your browser does not support HTML5 video.
         </video>
-        <div class="controls p-1 d-flex flex-row justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center center-play" *ngIf="video.paused">
+            <a (click)="playPause()">
+                <span class="fa-stack fa-5x">
+                    <i class="fa fa-circle-o fa-stack-2x"></i>
+                    <i class="fa fa-play fa-stack-1x ml-2"></i>
+                </span>
+            </a>
+        </div>
+        <div [ngClass]="{'hide-controls': !showControls && !video.paused}" class="controls p-1 d-flex flex-row justify-content-center align-items-center">
             <div class="play-pause pl-3">
-                <a (click)="playPause(video)"><i class="text-white  fa fa-2x" [ngClass]="{'fa-play': video.paused, 'fa-pause': !video.paused}"></i></a>
+                <a (click)="playPause()"><i class="text-white  fa fa-2x" [ngClass]="{'fa-play': video.paused, 'fa-pause': !video.paused}"></i></a>
             </div>
             <div class="progress">
                 <progress id='p' max='100' value='{{videoPercent}}'></progress>
             </div>
             <div class="time pl-3">
-                <span *ngIf="currentTime && duration" class="text-white">{{currentTime}}/{{duration}}</span>
+                <div *ngIf="currentTime && duration" class="d-flex justify-content-center align-items-center">
+                    <div>
+                        <span class="text-white">{{currentTime}}</span>
+                    </div>
+                    <div class="pl-2 pr-2"><span class="text-white">/</span></div>
+                    <div>
+                        <span class="text-white">{{duration}}</span>
+                    </div>
+                </div>
             </div>
             <div class="close">
                 <a (click)="close()"><i class="text-white fa fa-close fa-2x"></i></a>

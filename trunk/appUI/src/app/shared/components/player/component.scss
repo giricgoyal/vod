@@ -13,12 +13,15 @@
     position: fixed;
     top: 0px;
     left: 0px;
+    .center-play,
     .video-container {
         width: 100vw;
         height: 100vh;
         position: fixed;
         top: 0px;
         left: 0px;
+    }
+    .video-container {
         video {
             width: 100%;
         }
@@ -30,6 +33,11 @@
             bottom: 0px;
             z-index: 1000;
             opacity: 0.8;
+            &.hide-controls {
+                visibility: hidden;
+                opacity: 0;
+                transition: visibility 0.5s, opacity 0.5s linear;
+            }
             .play-pause {
                 width: 5%;
                 min-width: 24px;

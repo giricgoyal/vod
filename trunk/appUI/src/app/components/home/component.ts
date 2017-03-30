@@ -9,15 +9,31 @@ import { MoviesService } from '../../shared';
 
 export class HomeComponent implements OnInit {
     private moviesService: any;
-    private moviesList: any;
+    private moviesData: any;
+    private showLoader: boolean;
 
     constructor(moviesService: MoviesService) {
         this.moviesService = moviesService;
+        this.showLoader = false;
     }
 
     ngOnInit() {
+        this.getMoviesData();
+    }
+
+    getMoviesData() {
+        this.showLoader = true;
         this.moviesService.getMoviesData((response) => {
-            this.moviesList = response.entries;
+            this.showLoader = false;
+            this.moviesData = response;
+        }, (err) => {
+            this.showLoader = false;
+        });
+    }
+
+    saveHistoryCallback($event) {
+        this.moviesService.saveHistory($event.movieId, $event.obj, () => {
+            this.getMoviesData();
         });
     }
 }

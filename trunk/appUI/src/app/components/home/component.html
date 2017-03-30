@@ -1,3 +1,4 @@
 <div class="history-page main-full-height d-flex">
-    <carousel class="flex-1" [carouselData]="moviesList"></carousel>
+    <loader [showLoader]="showLoader"></loader>
+    <carousel class="flex-1" [carouselData]="moviesData" (saveHistoryCallback)="saveHistoryCallback($event)"></carousel>
 </div>

@@ -9,10 +9,34 @@ export class MoviesService {
         this.httpService = httpService;
     }
 
-    getMoviesData(successFn) {
-        this.httpService.requestExternal('https://demo2697834.mockable.io/movies', 'GET', 'json', null, null, (response) => {
+    getMoviesData(successFn, errorFn) {
+        this.httpService.request('/movies', 'GET', 'json', null, null, (response) => {
             if (successFn) {
                 successFn(response);
+            }
+        }, (error) => {
+            if (errorFn) {
+                errorFn(error);
+            }
+        });
+    }
+
+    getOnlyMoviesWithHistoryData(successFn, errorFn) {
+        this.httpService.request('/movies/history', 'GET', 'json', null, null, (response) => {
+            if (successFn) {
+                successFn(response);
+            }
+        }, (error) => {
+            if (errorFn) {
+                errorFn(error);
+            }
+        });
+    }
+
+    saveHistory(movieId, obj, successFn) {
+        this.httpService.request(`/movies/history/${movieId}`, 'POST', 'json', obj, null, (response) => {
+            if (successFn) {
+                successFn();
             }
         }, (error) => {
             console.log(error);

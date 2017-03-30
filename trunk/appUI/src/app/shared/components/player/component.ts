@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewInit, HostListener } from '@angular/core';
+import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterViewInit, HostListener, OnDestroy } from '@angular/core';
 
 @Component({
     selector: 'player',
@@ -6,8 +6,9 @@ import { Component, Output, EventEmitter, Input, ViewChild, ElementRef, AfterVie
     styleUrls: ['./component.scss']
 })
 
-export class PlayerComponent implements AfterViewInit {
+export class PlayerComponent implements AfterViewInit, OnDestroy {
     @Output() closeCallback: EventEmitter<any> = new EventEmitter();
+    @Output() saveHistoryCallback: EventEmitter<any> = new EventEmitter();
     @Input('inputModel') item: any;
     @ViewChild('video') videoEl: ElementRef;
 
@@ -35,7 +36,17 @@ export class PlayerComponent implements AfterViewInit {
     }
 
     ngAfterViewInit() {
-        
+        if (this.videoEl && this.item.historyData) {
+            this.videoEl.nativeElement.currentTime = this.item.historyData.duration;
+        }
+    }
+
+    ngOnDestroy() {
+        this.saveHistoryCallback.emit({
+            item: this.item,
+            totalDuration: this.videoEl.nativeElement.duration,
+            duration: this.videoEl.nativeElement.currentTime
+        });
     }
 
     private getTimeString(time) {
@@ -66,7 +77,7 @@ export class PlayerComponent implements AfterViewInit {
     }
 
     close() {
-        this.closeCallback.emit(null);
+        this.closeCallback.emit();
     }
 
     playPause() {
@@ -76,9 +87,5 @@ export class PlayerComponent implements AfterViewInit {
         else {
             this.videoEl.nativeElement.pause();
         }
-    }
-
-    pause() {
-
     }
 }

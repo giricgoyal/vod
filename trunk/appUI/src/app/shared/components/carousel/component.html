@@ -6,8 +6,9 @@
                     <img class="movie-thumb" src="{{item.images[0].url || 'assets/images/unavailable.png'}}"/>
                 </div>
                 <div>{{item.title}}</div>
+                <div *ngIf="item.historyData && item.historyData.status" class="status p-1 m-1">{{item.historyData.status | uppercase}}</div>
             </div>
         </template>
     </div>
 </div>
-<player *ngIf="showPlayer" (closeCallback)="closePlayerFn($event)" [inputModel]="selectedMovie"></player>
+<player *ngIf="showPlayer" (closeCallback)="closePlayerFn($event)" [inputModel]="selectedMovie" (saveHistoryCallback)="saveHistoryForVideo($event)"></player>

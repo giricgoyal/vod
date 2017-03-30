@@ -7,6 +7,9 @@ var rootRoutes = function(app) {
     // users route
     app.use('/api/users', require('./users/route'));
     app.use('/api/oauth', require('./auth/route'));
+
+    // movie routes
+    app.use('/api/movies', require('./movies/route'));
 };
 
 module.exports = rootRoutes;

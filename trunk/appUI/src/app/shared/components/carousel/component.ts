@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'carousel',
@@ -8,6 +8,8 @@ import { Component, Input, OnChanges } from '@angular/core';
 
 export class CarouselComponent implements OnChanges {
     @Input() carouselData: any;
+    @Output() saveHistoryCallback: EventEmitter<any> = new EventEmitter();
+    @Input() orderbyHistory: boolean;
 
     private showCards: Number;
     private firstCardIndex: Number;
@@ -25,7 +27,6 @@ export class CarouselComponent implements OnChanges {
     }
 
     showPlayerFn(item) {
-        console.log(item.title);
         this.selectedMovie = item;
         this.showPlayer = true;
     }
@@ -33,5 +34,18 @@ export class CarouselComponent implements OnChanges {
     closePlayerFn($event) {
         this.selectedMovie = undefined;
         this.showPlayer = false;
+    }
+
+    saveHistoryForVideo($event) {
+        let movieId = $event.item.id;
+        var obj: any = {
+            duration: $event.duration,
+            totalDuration: $event.totalDuration
+        };
+
+        if ($event.item.historyData) {
+            obj._id = $event.item.historyData._id;
+        }
+        this.saveHistoryCallback.emit({movieId: movieId, obj: obj});
     }
 }

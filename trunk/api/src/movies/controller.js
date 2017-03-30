@@ -26,12 +26,7 @@ controller.saveMovieHistory = function(req, res, next) {
         promise = Model.update({
             _id: req.body._id
         }, {
-            $set: {
-                duration: req.body.duration,
-                total_duration: req.body.totalDuration,
-                status: req.body.totalDuration - req.body.duration <= 120 ? 'watched' : 'watching',
-                updatedOn: new Date()
-            }
+            $set: obj
         }).exec();
 
     } else {

@@ -1,4 +1,5 @@
 <div class="history-page main-full-height d-flex">
     <loader [showLoader]="showLoader"></loader>
-    <carousel class="flex-1" [carouselData]="moviesData" (saveHistoryCallback)="saveHistoryCallback($event)" [orderbyHistory]="true"></carousel>
+    <carousel class="flex-1" [carouselData]="moviesData" (itemClickCallback)="itemSelectCallback($event)"></carousel>
+    <player *ngIf="selectedItem" (closeCallback)="closePlayerFn($event)" [inputModel]="selectedItem" (saveHistoryCallback)="saveHistoryCallback($event)"></player>
 </div>

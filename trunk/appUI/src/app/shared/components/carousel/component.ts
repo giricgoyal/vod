@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges, Output, EventEmitter, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
     selector: 'carousel',
@@ -6,46 +6,49 @@ import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core
     styleUrls: ['./component.scss']
 })
 
-export class CarouselComponent implements OnChanges {
+export class CarouselComponent implements AfterViewInit, OnChanges {
     @Input() carouselData: any;
-    @Output() saveHistoryCallback: EventEmitter<any> = new EventEmitter();
-    @Input() orderbyHistory: boolean;
+    @Output() itemClickCallback: EventEmitter<any> = new EventEmitter();
+    @ViewChild('cardContainer') cardContainer: ElementRef;
 
-    private showCards: Number;
-    private firstCardIndex: Number;
-    private showPlayer: boolean;
-    private selectedMovie: any;
+    private containerWidth: number;
+    private cardWidth: number = 207;
+    private cardCount: number;
+    private windowStart: number = 0;
+    private showItems: any;
 
     constructor() {
-        this.showCards = 5;
-        this.firstCardIndex = 0;
-        this.showPlayer = false;
     }
 
-    ngOnChanges() {
-        console.log(this.carouselData);
-    }
-
-    showPlayerFn(item) {
-        this.selectedMovie = item;
-        this.showPlayer = true;
-    }
-
-    closePlayerFn($event) {
-        this.selectedMovie = undefined;
-        this.showPlayer = false;
-    }
-
-    saveHistoryForVideo($event) {
-        let movieId = $event.item.id;
-        var obj: any = {
-            duration: $event.duration,
-            totalDuration: $event.totalDuration
-        };
-
-        if ($event.item.historyData) {
-            obj._id = $event.item.historyData._id;
+    ngOnChanges($changesObj) {
+        if ($changesObj.carouselData && $changesObj.carouselData.currentValue) {
+            this.initShowItems();
         }
-        this.saveHistoryCallback.emit({movieId: movieId, obj: obj});
+    }
+
+    ngAfterViewInit() {
+        this.containerWidth = this.cardContainer.nativeElement.clientWidth;
+        this.cardCount = Math.ceil(this.containerWidth / this.cardWidth);
+        if (this.carouselData) {
+            this.initShowItems();
+        }
+    }
+
+    itemClick(item) {
+        this.itemClickCallback.emit({item: item});
+    }
+
+    initShowItems() {
+        this.showItems = [];
+        let counter = 0;
+        while (counter < this.cardCount) {
+            let index = this.windowStart + counter;
+            this.showItems.push(this.carouselData[index]);
+            counter ++;
+        }
+    }
+
+    scroll(val) { 
+        
     }
 }

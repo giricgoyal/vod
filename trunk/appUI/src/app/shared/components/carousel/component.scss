@@ -1,43 +1,73 @@
 .carousel-container {
     min-height: 100px;
     width: 100%;
-    .movie-card {
+    .nav-arrow {
+        height: 300px;
+        background-color: #909090;
+        opacity: 0.5;
+        position: absolute;
+        border: 2px solid transparent;
         cursor: pointer;
-        width: 200px;
-        .movie-thumb {
-            width: 100%;
-            border: 2px solid #e0e0e0;
+        z-index: 1;
+        &.left {
+            left: 0px;
+        }
+        &.right {
+            right: 0px;
         }
         &:hover {
+            opacity: 0.9;
+        }
+    }
+    .card-container {
+        width: 100vw;
+        position: relative;
+        overflow-x: hidden;
+        .movie-card {
+            cursor: pointer;
+            width: 200px;
             .movie-thumb {
-                border: 2px solid #1262fe;
+                width: 200px;
+                height: 300px;
+                border: 2px solid #e0e0e0;
+            }
+            &:hover {
+                .movie-thumb {
+                    border: 2px solid #1262fe;
+                }
+            }
+            .status {
+                position: relative;
+                background-color: #909090;
+                opacity: 0.7;
+                color: #ffffff;
+                top: -55px;
+                text-align: center;
             }
         }
-        .status {
-            position: relative;
-            background-color: #909090;
-            opacity: 0.7;
-            color: #ffffff;
-            top: -55px;
-            text-align: center;
+    }
+}
+
+@media screen and (max-width: 280px) {
+    .nav-arrow {
+        display: none;
+    }
+    .card-container {
+        flex-wrap: wrap;
+        .movie-card {
+            width: calc(100% - 10px);
         }
     }
 }
 
-@media screen and (max-width: 380px) {
-    .card-container {
-        flex-wrap: wrap;
-        .movie-card {
-            width: 100%;
-        }
+@media screen and (max-width: 420px) and (min-width: 281px) {
+    .nav-arrow {
+        display: none;
     }
-}
-
-@media screen and (max-width: 768px) and (min-width: 381px) {
     .card-container {
         flex-wrap: wrap;
         .movie-card {
-            width: 48%;
+            width: calc(50% - 10px);
         }
     }
 }

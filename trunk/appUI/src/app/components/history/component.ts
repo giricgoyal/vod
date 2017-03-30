@@ -11,6 +11,7 @@ export class HistoryComponent implements OnInit {
     private moviesService: any;
     private moviesData: any;
     private showLoader: boolean;
+    private selectedItem: any;
 
     constructor(moviesService: MoviesService) {
         this.moviesService = moviesService;
@@ -46,8 +47,27 @@ export class HistoryComponent implements OnInit {
         return sortedArr;
     }
 
+
+    itemSelectCallback($event) {
+        this.selectedItem = $event.item;
+    }
+
+    closePlayerFn($event) {
+        this.selectedItem = undefined;
+    }
+
     saveHistoryCallback($event) {
-        this.moviesService.saveHistory($event.movieId, $event.obj, () => {
+        let movieId = $event.item.id;
+        var obj: any = {
+            duration: $event.duration,
+            totalDuration: $event.totalDuration
+        };
+
+        if ($event.item.historyData) {
+            obj._id = $event.item.historyData._id;
+        }
+        
+        this.moviesService.saveHistory(movieId, obj, () => {
             this.getOnlyMoviesWithHistoryData();
         });
     }

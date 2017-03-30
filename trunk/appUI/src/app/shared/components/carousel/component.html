@@ -1,14 +1,17 @@
-<div class="carousel-container pt-2 pb-2 pl-2 pr-2">
-    <div class="card-container d-flex flex-row">
-        <template ngFor let-item [ngForOf]="carouselData" let-i="index" [ngForTrackBy]="i">
-            <div class="movie-card m-1" (click)="showPlayerFn(item)">
-                <div>
-                    <img class="movie-thumb" src="{{item.images[0].url || 'assets/images/unavailable.png'}}"/>
-                </div>
+<div class="carousel-container pt-3 pb-3">
+    <div class="nav-arrow left p-3 d-flex justify-content-center align-items-center" (click)="scroll(-1)">
+        <i class="fa fa-chevron-left fa-2x"></i>
+    </div>
+    <div class="nav-arrow right p-3 d-flex justify-content-center align-items-center" (click)="scroll(1)">
+        <i class="fa fa-chevron-right fa-2x"></i>
+    </div>
+    <div class="card-container d-flex flex-row" [style.left]="leftPx + 'px'" #cardContainer>
+        <template ngFor let-item [ngForOf]="showItems" let-i="index" [ngForTrackBy]="i">
+            <div class="movie-card ml-1 mr-1" (click)="itemClick(item)">
+                <div class="movie-thumb" [style.background]="'url(' + (item.images[0].url || 'assets/images/unavailable.png') + ')'"></div>
                 <div>{{item.title}}</div>
                 <div *ngIf="item.historyData && item.historyData.status" class="status p-1 m-1">{{item.historyData.status | uppercase}}</div>
             </div>
         </template>
     </div>
 </div>
-<player *ngIf="showPlayer" (closeCallback)="closePlayerFn($event)" [inputModel]="selectedMovie" (saveHistoryCallback)="saveHistoryForVideo($event)"></player>

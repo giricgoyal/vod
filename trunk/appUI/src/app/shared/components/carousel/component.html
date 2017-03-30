@@ -7,7 +7,7 @@
     </div>
     <div class="card-container d-flex flex-row" [style.left]="leftPx + 'px'" #cardContainer>
         <template ngFor let-item [ngForOf]="showItems" let-i="index" [ngForTrackBy]="i">
-            <div class="movie-card ml-1 mr-1" (click)="itemClick(item)">
+            <div class="movie-card ml-1 mr-1" [ngClass]="{'selected': keyboardEv && selectedItem && selectedItem.item.id == item.id}" (click)="itemClick(item)">
                 <div class="movie-thumb" [style.background]="'url(' + (item.images[0].url || 'assets/images/unavailable.png') + ')'"></div>
                 <div>{{item.title}}</div>
                 <div *ngIf="item.historyData && item.historyData.status" class="status p-1 m-1">{{item.historyData.status | uppercase}}</div>

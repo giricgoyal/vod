@@ -56,7 +56,26 @@ export class CarouselComponent implements AfterViewInit, OnChanges {
         this.initShowItems();
     }
 
+    @HostListener('mousewheel', ['$event']) 
+    onMouseWheelChrome(event: any) {
+        this.mouseWheelFunc(event);
+    }
+
+    @HostListener('DOMMouseScroll', ['$event']) 
+    onMouseWheelFirefox(event: any) {
+        this.mouseWheelFunc(event);
+    }
+
+    @HostListener('onmousewheel', ['$event']) 
+    onMouseWheelIE(event: any) {
+        this.mouseWheelFunc(event);
+    }
+
     constructor() {
+    }
+
+    mouseWheelFunc(event) {
+        this.selectNextItem(event.deltaX);
     }
 
     ngOnChanges($changesObj) {

@@ -1,0 +1,54 @@
+<div class="about-container p-3">
+    <div class="about-card mx-auto p-4">
+        <h4>Features</h4>
+        <div>
+            <ul>
+                <li>
+                    <p><b>Sections</b> The app features two sections: <b>"Home"</b> and <b>"History"</b></p>
+                    <p>The "Home" section features list of all the movies in the form of a carousel.</p>
+                    <p>The "History" section features list of all the movies that are viewed but not watched, viewed but watched partially or watched till the end in the form of a carousel. The list is sorted according to the most recent movies visited first.</p>
+                </li>
+                <li class="mt-2">
+                    <p><b>Carousel</b>: The carousel features an circular list of movies.</p>
+                    <p>Each card in the carousel, shows the thumbnail for the movie, title of the movie and the state of the movie (Watched/Watching).</p>
+                    <p>Clicking on a card open up the movie player in full screen mode with basic controls.</p>
+                </li>
+                <li>
+                    <p><b>Navigation:</b> The app supports carousel navigation with mouse and keyboard.</p>
+                    <p>Use the keyboard "Left" and "Right" Keys to navigate and "Enter/Return" key to select and play a movie.</p>
+                    <p>Click the arrow keys on the left or right to navigate through the carousel list.</p>
+                    <p>Use scroll to navigate the list.</p>
+                </li>
+                <li>
+                    <p><b>Player</b>: The player fetaures basic controls like: Play/Pause button, progress bar, movie time elapsed/total movie time and close button.</p>
+                </li>
+            </ul>
+        </div>
+        <h4 class="mt-5">How To Setup/Run</h4>
+        <div>
+            <p><b>Prerequisites</b></p>
+            <ul>
+                <li>
+                    Node with npm
+                </li>
+                <li>
+                    MongoDB
+                </li>
+            </ul>
+            <p><b>API Server</b></p>
+            <ul>
+                <li>Make sure the mongo service is running. <br><i>mongod</i></li>
+                <li>cd to [project-root]/trunk/api</li>
+                <li>To generate user data, run: <br><i>node generateData.js</i></li>
+                <li>To install dependencies and start server, run:<br><i>npm start</i></li>
+            </ul>
+            <p><b>UI Server</b></p>
+            <ul>
+                <li>cd to [project-root]/trunk/appUI</li>
+                <li>To install dependencies and start server, run:<br><i>npm start</i></li>
+                <li>Navigate to <i>http://localhost:4200</i></li>
+                <li>To login use username/password: <i>admin@admin.com/P@ssw0rd</i></li>
+            </ul>
+        </div>
+    </div>
+</div>

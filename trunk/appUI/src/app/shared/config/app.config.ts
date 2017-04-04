@@ -2,7 +2,7 @@ import { environment } from '../../../environments/environment';
 
 const api = {
     prod: '',
-    dev: 'http://localhost:3000/api',
+    dev: 'http://52.66.86.92:3901/api',
     localhost: 'http://localhost:3000/api'
 }
 

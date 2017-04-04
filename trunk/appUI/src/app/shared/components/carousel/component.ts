@@ -100,7 +100,7 @@ export class CarouselComponent implements AfterViewInit, OnChanges {
     initShowItems() {
         this.showItems = [];
         let counter = 0;
-        while (counter < this.cardCount) {
+        while (counter < this.cardCount && counter < this.carouselData.length) {
             let index = this.windowStart + counter >= this.carouselData.length ? (this.windowStart + counter) % this.carouselData.length  : this.windowStart + counter;
             this.showItems.push(this.carouselData[index]);
             counter ++;

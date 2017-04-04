@@ -9,6 +9,10 @@ const routes: Routes = [
     {
         path: 'app',
         loadChildren: 'app/components/main/index#MainModule'
+    },
+    {
+        path: 'about',
+        loadChildren: 'app/components/about/index#AboutModule'
     }
 ];
 

@@ -23,6 +23,9 @@ export class LoginComponent implements OnInit {
         this.httpService = httpService;
         this.authService = authService;
         this.showLoader = false;
+        if (this.authService.isAuthenticated()) {
+            this.authService.redirectAfterAuth();
+        }
     }
 
      ngOnInit() {
